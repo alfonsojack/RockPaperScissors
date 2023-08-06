@@ -1,30 +1,61 @@
-var rock = {
+
+var classicGame = document.querySelector("#classic");
+var classicGameBoard = document.querySelector(".game-board");
+// var gamePieces = classicGameBoard.children; 
+// for (var i = 0; i < gamePieces.length; i++){
+//   var classicPieces = gamePieces[i];
+// }
+
+classicGame.addEventListener('click', function(event){
+  createPlayer();
+  removeChoices();
+  addGameBoard();
+
+}
+)
+
+
+classicGameBoard.addEventListener('click', function(event){
+  playGame(event.target.id);
+  console.log(player1);
+  console.log(player2);
+}
+)
+
+
+var classicPieces = {
+rock: {
   name: "rock",
   win: "scissors",
   loss: "paper",
-}
-var scissors = {
+},
+scissors: {
   name: "scissors",
-  win: "paper", 
+  win: "paper",
   loss: "rock",
-}
-var paper = {
+},
+paper: {
   name: "paper",
   win: "rock",
-  loss: "scissors"
+  loss: "scissors",
+}
 }
 
-var player1 = {};
+var player1 = {
+};
+
 
 var player2 = {
   name: 'Computer',
-  wins: 0
+  wins: 0,
+  selection: ""
 };
 
 function createPlayer(nameInput){
   player1 = {
-    name: nameInput, 
+    name: nameInput || 'Human', 
     wins: 0,
+    selection: ""
   }
   return player1
 }
@@ -52,18 +83,38 @@ function computerChoice(){
 
 function playGame(playerChoice){
   var cpuChoiceClassic = computerChoice()
-  console.log(playerChoice);
-  console.log(cpuChoiceClassic);
-  if (playerChoice.name === cpuChoiceClassic){
-    return 'draw'
+  player1.selection = playerChoice;
+  player2.selection = cpuChoiceClassic;
+  if (classicPieces[playerChoice].name === cpuChoiceClassic){
+    return evaluateWins('draw')
   }
-  if (playerChoice.win === cpuChoiceClassic){
-    return player1.wins++
+  if (classicPieces[playerChoice].win.includes(cpuChoiceClassic)){
+    return evaluateWins(player1)
   }
-  if (playerChoice.loss === cpuChoiceClassic){
-    return player2.wins++
+  if (classicPieces[playerChoice].loss.includes(cpuChoiceClassic)){
+    return evaluateWins(player2)
   }
 }
+
+function evaluateWins(winner){
+  var gamePieces = document.querySelectorAll('.game-piece');
+  for (var i=0; i<gamePieces.length; i++){
+    if(gamePieces[i].id != player1.selection && gamePieces[i].id != player2.selection){
+        gamePieces[i].classList.add("hide")
+    }
+    console.log(`${winner.name} wins!`)
+  }
+  // var player1Selection = document.querySelector(player1.selection);
+  // var player2Selection = document.querySelector(player2.selection);
+  // player1Selection.classList.remove("hide");
+  // player2Selection.classList.remove("hide");
+
+  if (winner === 'draw') {
+    console.log('draw')} else {
+    winner.wins++;
+    }
+}
+
 
 function resetGame(){
   player1.wins = 0;
@@ -77,19 +128,24 @@ function removeChoices(){
   }
 }
 
+
 function addGameBoard(){
   var gameBoard = document.querySelector(".game-board");
   var rockImg = document.createElement('img');
   rockImg.setAttribute('src', '/Users/jack/home/turing_work/1mod/project5/black-and-white-rocks.png');
-  rockImg.classList.add('game-piece')
+  rockImg.classList.add('game-piece');
+  rockImg.setAttribute('id', 'rock');
   gameBoard.appendChild(rockImg);
+  
   var paperImg = document.createElement('img');
   paperImg.setAttribute('src', '/Users/jack/home/turing_work/1mod/project5/black-and-white-paper.png');
   paperImg.classList.add('game-piece')
+  paperImg.setAttribute('id', 'paper');
   gameBoard.appendChild(paperImg);
+  
   var scissorsImg = document.createElement('img');
   scissorsImg.setAttribute('src', '/Users/jack/home/turing_work/1mod/project5/black-and-white-scissors.png');
-  scissorsImg.classList.add('game-piece')
+  scissorsImg.classList.add('game-piece');
+  scissorsImg.setAttribute('id', 'scissors');
   gameBoard.appendChild(scissorsImg);
-  
 }
