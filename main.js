@@ -7,14 +7,11 @@ classicGame.addEventListener('click', function(event){
   createPlayer();
   removeChoices();
   addGameBoard();
-
 }
 )
 
 classicGameBoard.addEventListener('click', function(event){
   playGame(event.target.id);
-  console.log(player1);
-  console.log(player2);
 }
 )
 
@@ -122,7 +119,7 @@ function evaluateWins(winner){
     winner.wins++;
     topMessage.innerText = `${winner.name} wins!`
     }
-  
+    updateScore();
 }
 
 
@@ -170,4 +167,11 @@ function addGameBoard(){
 
   topMessage.innerText = "Choose your fighter!";
 
+}
+
+function updateScore(){
+var humanScore =  document.querySelector("#human-score");
+var computerScore = document.querySelector("#computer-score");
+humanScore.innerText = `Wins: ${player1.wins}`;
+computerScore.innerText = `Wins: ${player2.wins}`;
 }
