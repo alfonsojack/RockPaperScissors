@@ -9,18 +9,18 @@
   <body>
     <section>
       <h2>Human</h2>
-      <h3>Wins: 0</h3>
+      <h3 id="human-score">Wins: 0</h3>
     </section>
     <main>
       <h1>Rock, Paper, Scissors</h1>
-      <h2>Choose your game!</h2>
-      <article>
+      <h2 class = "top-message">Choose your game!</h2>
+      <article class= "game-choice" id="classic">
         <h3>CLASSIC</h3>
         <li>rock > scissors</li>
         <li>paper > rock</li>
         <li>scissors > paper</li>
       </article>
-      <article>
+      <article class= "game-choice" id="difficult">
         <h3>DIFFICULT</h3>
         <li>rock > scissors & lizard</li>
         <li>paper > rock & alien</li>
@@ -28,10 +28,12 @@
         <li>lizard > paper & alien</li>
         <li>alien > scissors & rock</li>
       </article>
+      <section class="game-board">
+      </section>
     </main>
     <section>
       <h2>Computer</h2>
-      <h3>Wins: 0</h3>
+      <h3 id="computer-score">Wins: 0</h3>
     </section>
     <script type="text/javascript" src="main.js"></script>
   </body>
