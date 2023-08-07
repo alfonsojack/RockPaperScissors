@@ -2,6 +2,10 @@
 var gameChoice = document.querySelector(".game-choice");
 var classicGameBoard = document.querySelector(".game-board");
 var topMessage = document.querySelector('.top-message');
+var nameEntered = document.querySelector('#name-input');
+var humanIcon = document.querySelector("#human-icon");
+var cpuIcon = document.querySelector("#cpu-icon");
+var chooseIcon = document.querySelector("#choose-icon")
 
 gameChoice.addEventListener('click', function(event){
   var choice = event.target.closest('.game-choices');
@@ -11,6 +15,14 @@ gameChoice.addEventListener('click', function(event){
   addGameBoard();
 }
 )
+
+chooseIcon.addEventListener('click', function(event){
+  var altIcon = event.target.closest('.alt-icon');
+  chooseAltIcon(altIcon.innerText)
+}
+)
+
+
 
 classicGameBoard.addEventListener('click', function(event){
   playGame(event.target.id);
@@ -59,12 +71,16 @@ var player1 = {
 var player2 = {
   name: 'Computer',
   wins: 0,
-  selection: ""
+  selection: "",
 };
 
-function createPlayer(nameInput){
+function chooseAltIcon(emoji){
+  humanIcon.innerText = emoji;
+}
+
+function createPlayer(){
   player1 = {
-    name: nameInput || 'Human', 
+    name: nameEntered.value || 'Human', 
     wins: 0,
     selection: ""
   }
@@ -115,14 +131,14 @@ function showSelections(){
   for (var i=0; i<gamePieces.length; i++){
     if(gamePieces[i].id === player1.selection) {
       var player1Piece = document.createElement('figcaption');
-      var player1Node = document.createTextNode(`${player1.name}`);
+      var player1Node = document.createTextNode(humanIcon.innerText);
       player1Piece.appendChild(player1Node);
       player1Piece.classList.add('caption')
       gamePieces[i].appendChild(player1Piece);
     }
     if (gamePieces[i].id === player2.selection) {
       var player2Piece = document.createElement('figcaption');
-      var player2Node = document.createTextNode(`${player2.name}`);
+      var player2Node = document.createTextNode(cpuIcon.innerText);
       player2Piece.classList.add('caption');
       player2Piece.appendChild(player2Node);
       gamePieces[i].appendChild(player2Piece);
@@ -130,14 +146,14 @@ function showSelections(){
     }
 
 }
-setTimeout(addGameBoard, 2500)
+setTimeout(addGameBoard, 1400)
 }
 
 function evaluateWins(winner){
   if (winner === 'draw') {
-    topMessage.innerText = "It's a draw..."} else {
+    topMessage.innerText = "It's a draw... Resetting game board..."} else {
     winner.wins++;
-    topMessage.innerText = `${winner.name} wins!`
+    topMessage.innerText = `${winner.name} wins! Resetting game board...`
     }
     updateScore();
 }
@@ -145,9 +161,15 @@ function evaluateWins(winner){
 
 function removeChoices(){
   var gameChoices = document.querySelectorAll('.game-choice');
+  var humanName = document.querySelector("#human-name");
+  var input = document.querySelector(".input");
+  humanName.innerText = player1.name;
   for (var i=0; i<gameChoices.length; i++){
     gameChoices[i].remove();
   }
+
+  input.classList.add('hide');
+  chooseIcon.classList.add('hide');
 }
 
 
