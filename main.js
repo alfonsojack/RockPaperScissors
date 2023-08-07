@@ -1,10 +1,7 @@
 
 var classicGame = document.querySelector("#classic");
 var classicGameBoard = document.querySelector(".game-board");
-// var gamePieces = classicGameBoard.children; 
-// for (var i = 0; i < gamePieces.length; i++){
-//   var classicPieces = gamePieces[i];
-// }
+var topMessage = document.querySelector('.top-message');
 
 classicGame.addEventListener('click', function(event){
   createPlayer();
@@ -14,14 +11,12 @@ classicGame.addEventListener('click', function(event){
 }
 )
 
-
 classicGameBoard.addEventListener('click', function(event){
   playGame(event.target.id);
   console.log(player1);
   console.log(player2);
 }
 )
-
 
 var classicPieces = {
 rock: {
@@ -36,10 +31,11 @@ scissors: {
 },
 paper: {
   name: "paper",
-  win: "rock",
+  win: "rock", 
   loss: "scissors",
 }
 }
+
 
 var player1 = {
 };
@@ -60,14 +56,6 @@ function createPlayer(nameInput){
   return player1
 }
 
-// function createGame(nameInput){
-//   var game = {
-//     player1: createPlayer(nameInput),
-//     player2: createPlayer("computer"),
-//   }
-//   return game
-// }
-
 function getRandomIndex(){
   var randomIndex = Math.floor(Math.random() * 3);
   return randomIndex
@@ -80,12 +68,14 @@ function computerChoice(){
 }
 
 
-
 function playGame(playerChoice){
   var cpuChoiceClassic = computerChoice()
   player1.selection = playerChoice;
   player2.selection = cpuChoiceClassic;
-  if (classicPieces[playerChoice].name === cpuChoiceClassic){
+  showSelections();
+  console.log(playerChoice);
+  console.log(cpuChoiceClassic);
+  if (playerChoice === cpuChoiceClassic){
     return evaluateWins('draw')
   }
   if (classicPieces[playerChoice].win.includes(cpuChoiceClassic)){
@@ -96,23 +86,43 @@ function playGame(playerChoice){
   }
 }
 
-function evaluateWins(winner){
+
+function showSelections(){
   var gamePieces = document.querySelectorAll('.game-piece');
   for (var i=0; i<gamePieces.length; i++){
-    if(gamePieces[i].id != player1.selection && gamePieces[i].id != player2.selection){
-        gamePieces[i].classList.add("hide")
+    if(gamePieces[i].id === player1.selection) {
+      var player1Piece = document.createElement('figcaption');
+      var player1Node = document.createTextNode(`${player1.name}`);
+      player1Piece.appendChild(player1Node);
+      player1Piece.classList.add('caption')
+      gamePieces[i].appendChild(player1Piece);
     }
-    console.log(`${winner.name} wins!`)
-  }
-  // var player1Selection = document.querySelector(player1.selection);
-  // var player2Selection = document.querySelector(player2.selection);
-  // player1Selection.classList.remove("hide");
-  // player2Selection.classList.remove("hide");
+    if (gamePieces[i].id === player2.selection) {
+      var player2Piece = document.createElement('figcaption');
+      var player2Node = document.createTextNode(`${player2.name}`);
+      player2Piece.classList.add('caption');
+      player2Piece.appendChild(player2Node);
+      gamePieces[i].appendChild(player2Piece);
+      
+    }
 
+}
+setTimeout(addGameBoard, 2500)
+}
+
+
+
+function removeEvent(){
+  classicGameBoard.removeEventListener('click', playGame, true)
+}
+
+function evaluateWins(winner){
   if (winner === 'draw') {
-    console.log('draw')} else {
+    topMessage.innerText = "It's a draw..."} else {
     winner.wins++;
+    topMessage.innerText = `${winner.name} wins!`
     }
+  
 }
 
 
@@ -130,22 +140,34 @@ function removeChoices(){
 
 
 function addGameBoard(){
-  var gameBoard = document.querySelector(".game-board");
+  classicGameBoard.innerHTML = "";
   var rockImg = document.createElement('img');
+  var rockFig = document.createElement('figure');
   rockImg.setAttribute('src', '/Users/jack/home/turing_work/1mod/project5/black-and-white-rocks.png');
-  rockImg.classList.add('game-piece');
+  rockFig.classList.add('game-piece');
+  rockFig.setAttribute('id', 'rock');
   rockImg.setAttribute('id', 'rock');
-  gameBoard.appendChild(rockImg);
+  classicGameBoard.appendChild(rockFig);
+  rockFig.appendChild(rockImg);
   
   var paperImg = document.createElement('img');
+  var paperFig = document.createElement('figure');
   paperImg.setAttribute('src', '/Users/jack/home/turing_work/1mod/project5/black-and-white-paper.png');
-  paperImg.classList.add('game-piece')
+  paperFig.classList.add('game-piece');
+  paperFig.setAttribute('id', 'paper');
   paperImg.setAttribute('id', 'paper');
-  gameBoard.appendChild(paperImg);
+  classicGameBoard.appendChild(paperFig);
+  paperFig.appendChild(paperImg);
   
   var scissorsImg = document.createElement('img');
+  var scissorsFig = document.createElement('figure');
   scissorsImg.setAttribute('src', '/Users/jack/home/turing_work/1mod/project5/black-and-white-scissors.png');
-  scissorsImg.classList.add('game-piece');
+  scissorsFig.classList.add('game-piece');
+  scissorsFig.setAttribute('id', 'scissors');
   scissorsImg.setAttribute('id', 'scissors');
-  gameBoard.appendChild(scissorsImg);
+  classicGameBoard.appendChild(scissorsFig);
+  scissorsFig.appendChild(scissorsImg);
+
+  topMessage.innerText = "Choose your fighter!";
+
 }
