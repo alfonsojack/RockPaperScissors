@@ -77,12 +77,17 @@ function createGame(type){
 }
 
 function getRandomIndex(){
+
   var randomIndex = Math.floor(Math.random() * 3);
+  
+  if(gameState.type === "difficult") {
+    randomIndex = Math.floor(Math.random() * 5);
+  }
   return randomIndex
 }
 
 function computerChoice(){
-  var classicChoice = ["rock", "paper", "scissors"];
+  var classicChoice = ["rock", "paper", "scissors", "alien", "lizard"];
   var cpuChoiceClassic = classicChoice[getRandomIndex()];
   return cpuChoiceClassic
 }
