@@ -3,11 +3,11 @@
   <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@0,100;0,300;0,400;0,500;0,800;0,900;1,100;1,400;1,900&family=Poppins:wght@500&family=Rubik+Dirt&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <section>
+    <section class="side-bar">
       <h2 id="human-icon">&#128526</h2>
       <h2 id="human-name">Human</h2>
       <input class= "input" id="name-input" type="text" placeholder="Enter name here"/>
@@ -19,20 +19,20 @@
         <button class="alt-icon" id="clown">&#129313</button>
         <button class="alt-icon" id="sunglasses">&#128526</button>
       </section>
-      <button class="home-button hide">Home</button>
+      <button class="small-button home-button hide">Home</button>
     </section>
     <main class="load-page">
       <h1>Rock, Paper, Scissors</h1>
       <h2 class = "top-message">Choose your game!</h2>
       <section class="game-choice">
         <button class="game-choices" id="classic">
-          <h3>CLASSIC</h3>
+          <h3 class="difficulty">CLASSIC</h3>
           <li>rock > scissors</li>
           <li>paper > rock</li>
           <li>scissors > paper</li>
         </button>
         <button class="game-choices" id="difficult">
-          <h3>DIFFICULT</h3>
+          <h3 class="difficulty">DIFFICULT</h3>
           <li>rock > scissors & lizard</li>
           <li>paper > rock & alien</li>
           <li>scissors > paper & lizard</li>
@@ -43,9 +43,9 @@
       <section class="game-board">
       </section>
       <h2 class="bottom-message"></h2>
-      <button class="reset-score hide">Reset Scores</button>
+      <button class="small-button reset-score hide">Reset Scores</button>
     </main>
-    <section>
+    <section class="side-bar">
       <h2 id="cpu-icon">&#129302</h2>
       <h2>Computer</h2>
       <h3 id="computer-score">Wins: 0</h3>
