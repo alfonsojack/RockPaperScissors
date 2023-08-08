@@ -2,10 +2,13 @@
 var gameChoice = document.querySelector(".game-choice");
 var classicGameBoard = document.querySelector(".game-board");
 var topMessage = document.querySelector('.top-message');
+var bottomMessage = document.querySelector('.bottom-message');
 var nameEntered = document.querySelector('#name-input');
 var humanIcon = document.querySelector("#human-icon");
 var cpuIcon = document.querySelector("#cpu-icon");
-var chooseIcon = document.querySelector("#choose-icon")
+var chooseIcon = document.querySelector("#choose-icon");
+var homeButton = document.querySelector(".home-button");
+var resetScore = document.querySelector(".reset-score");
 
 gameChoice.addEventListener('click', function(event){
   var choice = event.target.closest('.game-choices');
@@ -26,6 +29,17 @@ chooseIcon.addEventListener('click', function(event){
 
 classicGameBoard.addEventListener('click', function(event){
   playGame(event.target.id);
+}
+)
+
+homeButton.addEventListener('click', function(event){
+  location.reload()
+}  
+)
+
+resetScore.addEventListener('click', function(event){
+  resetScores();
+  updateScore();
 }
 )
 
@@ -92,6 +106,11 @@ function createGame(type){
   return gameState
 }
 
+function resetScores(){
+  player1.wins = 0;
+  player2.wins = 0;
+}
+
 function getRandomIndex(){
 
   var randomIndex = Math.floor(Math.random() * 3);
@@ -151,10 +170,11 @@ setTimeout(addGameBoard, 1400)
 
 function evaluateWins(winner){
   if (winner === 'draw') {
-    topMessage.innerText = "It's a draw... Resetting game board..."} else {
+    topMessage.innerText = "It's a draw... "} else {
     winner.wins++;
-    topMessage.innerText = `${winner.name} wins! Resetting game board...`
+    topMessage.innerText = `${winner.name} wins!`
     }
+    bottomMessage.innerText = "Setting up next round..."
     updateScore();
 }
 
@@ -203,6 +223,10 @@ function addGameBoard(){
   scissorsFig.appendChild(scissorsImg);
 
   topMessage.innerText = "Choose your fighter!";
+  bottomMessage.innerText = "Classic Mode";
+  homeButton.classList.remove("hide");
+  resetScore.classList.remove("hide");
+
 
   if (gameState.type === "difficult"){
     
@@ -224,6 +248,7 @@ function addGameBoard(){
     classicGameBoard.appendChild(alienFig);
     alienFig.appendChild(alienImg);
 
+    bottomMessage.innerText = "Difficult Mode"
   }
 
 }
