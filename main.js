@@ -180,7 +180,7 @@ function showSelections() {
     };
   };
   clicked = true;
-  setTimeout(addGameBoard, 1100);
+  setTimeout(addGameBoard, 1200);
 };
 
 function evaluateWins(winner) {
