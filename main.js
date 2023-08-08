@@ -165,7 +165,7 @@ function showSelections(){
     }
 
 }
-setTimeout(addGameBoard, 1400)
+setTimeout(addGameBoard, 1100)
 }
 
 function evaluateWins(winner){
@@ -259,3 +259,4 @@ var computerScore = document.querySelector("#computer-score");
 humanScore.innerText = `Wins: ${player1.wins}`;
 computerScore.innerText = `Wins: ${player2.wins}`;
 }
+
