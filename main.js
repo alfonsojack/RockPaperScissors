@@ -8,6 +8,7 @@ var humanIcon = document.querySelector('#human-icon');
 var chooseIcon = document.querySelector('.choose-icon');
 var homeButton = document.querySelector('#home-button');
 var resetScore = document.querySelector('#reset-score');
+var clicked = false;
 
 // EVENT LISTENERS
 
@@ -27,7 +28,9 @@ chooseIcon.addEventListener('click', function(event) {
 );
 
 classicGameBoard.addEventListener('click', function(event) {
-  playGame(event.target.id);
+  if(clicked === false) {
+    playGame(event.target.id);
+  }
 }
 );
 
@@ -176,7 +179,8 @@ function showSelections() {
       gamePieces[i].appendChild(player2Piece);    
     };
   };
-  setTimeout(addGameBoard, 900);
+  clicked = true;
+  setTimeout(addGameBoard, 1100);
 };
 
 function evaluateWins(winner) {
@@ -207,6 +211,7 @@ function removeChoices() {
 
 function addGameBoard() {
   classicGameBoard.innerHTML = '';
+  clicked = false;
   topMessage.innerText = 'Choose your fighter!';
   bottomMessage.innerText = 'Classic Mode';
   homeButton.classList.remove('hide');
