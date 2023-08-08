@@ -110,11 +110,7 @@ img {
   border: 5px solid black;
 }
 
-#human-icon, #cpu-icon {
-  font-size: xx-large;
-}
-
-.alt-icon {
+.icon {
   font-size: xx-large;
   height: 60px;
   width: 60px;
