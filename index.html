@@ -8,18 +8,18 @@
   </head>
   <body>
     <section class="side-bar">
-      <h2 id="human-icon">&#128526</h2>
-      <h2 id="human-name">Human</h2>
-      <input class= "input" id="name-input" type="text" placeholder="Enter name here"/>
-      <h3 id="human-score">Wins: 0</h3>
-      <section id="choose-icon">
+      <h2 class="icon" id="human-icon">&#128526</h2>
+      <h2 class="human-name">Human</h2>
+      <input class="input" type="text" placeholder="Enter name here"/>
+      <h3 class="human-score">Wins: 0</h3>
+      <section class="choose-icon">
         <h3>Choose your icon!</h3>
-        <button class="alt-icon" id="nose">&#129317</button>
-        <button class="alt-icon" id="cowboy">&#129312</button>
-        <button class="alt-icon" id="clown">&#129313</button>
-        <button class="alt-icon" id="sunglasses">&#128526</button>
+        <button class="icon">&#129317</button>
+        <button class="icon">&#129312</button>
+        <button class="icon">&#129313</button>
+        <button class="icon">&#128526</button>
       </section>
-      <button class="small-button home-button hide">Home</button>
+      <button class="small-button hide" id="home-button">Home</button>
     </section>
     <main class="load-page">
       <h1>Rock, Paper, Scissors</h1>
@@ -43,12 +43,12 @@
       <section class="game-board">
       </section>
       <h2 class="bottom-message"></h2>
-      <button class="small-button reset-score hide">Reset Scores</button>
+      <button class="small-button hide" id="reset-score">Reset Scores</button>
     </main>
     <section class="side-bar">
-      <h2 id="cpu-icon">&#129302</h2>
+      <h2 class="icon" id="cpu-icon">&#129302</h2>
       <h2>Computer</h2>
-      <h3 id="computer-score">Wins: 0</h3>
+      <h3 class="computer-score">Wins: 0</h3>
     </section>
     <script type="text/javascript" src="main.js"></script>
   </body>

@@ -5,9 +5,9 @@ var classicGameBoard = document.querySelector('.game-board');
 var topMessage = document.querySelector('.top-message');
 var bottomMessage = document.querySelector('.bottom-message');
 var humanIcon = document.querySelector('#human-icon');
-var chooseIcon = document.querySelector('#choose-icon');
-var homeButton = document.querySelector('.home-button');
-var resetScore = document.querySelector('.reset-score');
+var chooseIcon = document.querySelector('.choose-icon');
+var homeButton = document.querySelector('#home-button');
+var resetScore = document.querySelector('#reset-score');
 
 // EVENT LISTENERS
 
@@ -21,7 +21,7 @@ gameChoice.addEventListener('click', function(event) {
 );
 
 chooseIcon.addEventListener('click', function(event) {
-  var altIcon = event.target.closest('.alt-icon');
+  var altIcon = event.target.closest('.icon');
   chooseAltIcon(altIcon.innerText);
 }
 );
@@ -95,7 +95,7 @@ function chooseAltIcon(emoji) {
 };
 
 function createPlayer() {
-  var nameEntered = document.querySelector('#name-input');
+  var nameEntered = document.querySelector('.input');
 
   player1 = {
     name: nameEntered.value || 'Human', 
@@ -193,7 +193,7 @@ function evaluateWins(winner) {
 
 function removeChoices() {
   var difficultyChoices = document.querySelectorAll('.game-choice');
-  var humanName = document.querySelector('#human-name');
+  var humanName = document.querySelector('.human-name');
   var input = document.querySelector('.input');
   humanName.innerText = player1.name;
   input.classList.add('hide');
@@ -265,8 +265,8 @@ function addGameBoard() {
 };
 
 function updateScore() {
-  var humanScore =  document.querySelector('#human-score');
-  var computerScore = document.querySelector('#computer-score');
+  var humanScore =  document.querySelector('.human-score');
+  var computerScore = document.querySelector('.computer-score');
   humanScore.innerText = `Wins: ${player1.wins}`;
   computerScore.innerText = `Wins: ${player2.wins}`;
 };
