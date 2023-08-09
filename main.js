@@ -219,7 +219,7 @@ function addGameBoard() {
   rockFig.classList.add('game-piece');
   rockFig.setAttribute('id', 'rock');
   var rockImg = document.createElement('img');
-  rockImg.setAttribute('src', '/Users/jack/home/turing_work/1mod/project5/black-and-white-rocks.png');
+  rockImg.setAttribute('src', 'black-and-white-rocks.png');
   rockImg.setAttribute('id', 'rock');
   classicGameBoard.appendChild(rockFig);
   rockFig.appendChild(rockImg);
@@ -229,7 +229,7 @@ function addGameBoard() {
   paperFig.classList.add('game-piece');
   paperFig.setAttribute('id', 'paper');
   var paperImg = document.createElement('img');
-  paperImg.setAttribute('src', '/Users/jack/home/turing_work/1mod/project5/black-and-white-paper.png');
+  paperImg.setAttribute('src', 'black-and-white-paper.png');
   paperImg.setAttribute('id', 'paper');
   classicGameBoard.appendChild(paperFig);
   paperFig.appendChild(paperImg);
@@ -238,7 +238,7 @@ function addGameBoard() {
   scissorsFig.classList.add('game-piece');
   scissorsFig.setAttribute('id', 'scissors');
   var scissorsImg = document.createElement('img');
-  scissorsImg.setAttribute('src', '/Users/jack/home/turing_work/1mod/project5/black-and-white-scissors.png');
+  scissorsImg.setAttribute('src', 'black-and-white-scissors.png');
   scissorsImg.setAttribute('id', 'scissors');
   classicGameBoard.appendChild(scissorsFig);
   scissorsFig.appendChild(scissorsImg);
@@ -249,7 +249,7 @@ function addGameBoard() {
     lizFig.classList.add('game-piece');
     lizFig.setAttribute('id', 'lizard');
     var lizImg = document.createElement('img');
-    lizImg.setAttribute('src', '/Users/jack/home/turing_work/1mod/project5/lizard-icon-33207.png');
+    lizImg.setAttribute('src', 'lizard-icon-33207.png');
     lizImg.setAttribute('id', 'lizard');
     classicGameBoard.appendChild(lizFig);
     lizFig.appendChild(lizImg);
@@ -258,7 +258,7 @@ function addGameBoard() {
     alienFig.classList.add('game-piece');
     alienFig.setAttribute('id', 'alien');
     var alienImg = document.createElement('img');
-    alienImg.setAttribute('src', '/Users/jack/home/turing_work/1mod/project5/black-and-white-alien.png');
+    alienImg.setAttribute('src', 'black-and-white-alien.png');
     alienImg.setAttribute('id', 'alien');
     classicGameBoard.appendChild(alienFig);
     alienFig.appendChild(alienImg);
