@@ -84,7 +84,6 @@ var game = {
   player2: {
     name: 'Computer',
     wins: 0,
-    token: '&#129302',
     selection: '',
   },
   type: '',
@@ -93,8 +92,7 @@ var game = {
 // FUNCTIONS 
 
 function chooseAltIcon(emoji) {
-  game.player1.token = emoji;
-  humanIcon.innerText = game.player1.token;
+  humanIcon.innerText = emoji;
 };
 
 function createPlayer() {
@@ -103,7 +101,6 @@ function createPlayer() {
   game.player1 = {
     name: nameEntered.value || 'Human', 
     wins: 0,
-    token: '&#128526',
     selection: '',
   };
   
