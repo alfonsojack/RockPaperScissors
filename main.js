@@ -79,16 +79,14 @@ var gameTokens = {
   },  
 };
 
-var gameState = {
+var game = {
+  player1: {},
+  player2: {
+    name: 'Computer',
+    wins: 0,
+    selection: '',
+  },
   type: '',
-};
-
-var player1 = {};
-
-var player2 = {
-  name: 'Computer',
-  wins: 0,
-  selection: '',
 };
 
 // FUNCTIONS 
@@ -100,31 +98,31 @@ function chooseAltIcon(emoji) {
 function createPlayer() {
   var nameEntered = document.querySelector('.input');
 
-  player1 = {
+  game.player1 = {
     name: nameEntered.value || 'Human', 
     wins: 0,
     selection: '',
   };
   
-  return player1;
+  return game.player1;
 };
 
 function createGame(type) {
-  gameState.type = type;
+  game.type = type;
   
-  return gameState;
+  return game;
 };
 
 function resetScores() {
-  player1.wins = 0;
-  player2.wins = 0;
+  game.player1.wins = 0;
+  game.player2.wins = 0;
 };
 
 function getRandomIndex() {
 
   var randomIndex = Math.floor(Math.random() * 3);
   
-  if(gameState.type === 'difficult') {
+  if(game.type === 'difficult') {
     randomIndex = Math.floor(Math.random() * 5);
   };
   
@@ -140,8 +138,8 @@ function computerChoice() {
 
 function playGame(playerChoice) {
   var cpuChoiceClassic = computerChoice();
-  player1.selection = playerChoice;
-  player2.selection = cpuChoiceClassic;
+  game.player1.selection = playerChoice;
+  game.player2.selection = cpuChoiceClassic;
   showSelections();
   
   if (playerChoice === cpuChoiceClassic) {
@@ -149,11 +147,11 @@ function playGame(playerChoice) {
   };
 
   if (gameTokens[playerChoice].win.includes(cpuChoiceClassic)) {
-    return evaluateWins(player1);
+    return evaluateWins(game.player1);
   };
 
   if (gameTokens[playerChoice].loss.includes(cpuChoiceClassic)) {
-    return evaluateWins(player2);
+    return evaluateWins(game.player2);
   };
 };
 
@@ -162,7 +160,7 @@ function showSelections() {
   
   for (var i = 0; i < gamePieces.length; i++) {
     
-    if(gamePieces[i].id === player1.selection) {
+    if(gamePieces[i].id === game.player1.selection) {
       var player1Piece = document.createElement('figcaption');
       var player1Node = document.createTextNode(humanIcon.innerText);
       player1Piece.appendChild(player1Node);
@@ -170,7 +168,7 @@ function showSelections() {
       gamePieces[i].appendChild(player1Piece);
     };
     
-    if (gamePieces[i].id === player2.selection) {
+    if (gamePieces[i].id === game.player2.selection) {
       var cpuIcon = document.querySelector('#cpu-icon');
       var player2Piece = document.createElement('figcaption');
       var player2Node = document.createTextNode(cpuIcon.innerText);
@@ -199,7 +197,7 @@ function removeChoices() {
   var difficultyChoices = document.querySelectorAll('.game-choice');
   var humanName = document.querySelector('.human-name');
   var input = document.querySelector('.input');
-  humanName.innerText = player1.name;
+  humanName.innerText = game.player1.name;
   input.classList.add('hide');
   chooseIcon.classList.add('hide');
   
@@ -245,7 +243,7 @@ function addGameBoard() {
   classicGameBoard.appendChild(scissorsFig);
   scissorsFig.appendChild(scissorsImg);
 
-  if (gameState.type === 'difficult') {
+  if (game.type === 'difficult') {
     
     var lizFig = document.createElement('figure');
     lizFig.classList.add('game-piece');
@@ -272,7 +270,7 @@ function addGameBoard() {
 function updateScore() {
   var humanScore =  document.querySelector('.human-score');
   var computerScore = document.querySelector('.computer-score');
-  humanScore.innerText = `Wins: ${player1.wins}`;
-  computerScore.innerText = `Wins: ${player2.wins}`;
+  humanScore.innerText = `Wins: ${game.player1.wins}`;
+  computerScore.innerText = `Wins: ${game.player2.wins}`;
 };
 
